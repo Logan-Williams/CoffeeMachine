@@ -13,16 +13,16 @@ namespace CoffeeRecipeClass
         public int CoffeAmound { get; set; }
         public int MilkAmound { get; set; }
 
-        public CoffeeRecipeClass(string name, int waterAmoubd, int coffeAmound, int milkAmmound)
+        public CoffeeRecipeClass(string name, int waterAmound, int coffeAmound, int milkAmmound)
         {
          Name = name;
-         WaterAmound = waterAmoubd;
+         WaterAmound = waterAmound;
          CoffeAmound = coffeAmound;
          MilkAmound = milkAmmound;
         }
         public override string ToString()
         {
-         return $"{Name}:Вода - {WaterAmound} мл, Кофе - {CoffeAmound}г, Молоко - {MilkAmound} мл";
+            return $"{Name}:Вода - {WaterAmound} мл, Кофе - {CoffeAmound}г, Молоко - {MilkAmound} мл";  // !!!!
         }
 
     }

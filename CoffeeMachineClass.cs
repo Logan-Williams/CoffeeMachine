@@ -1,4 +1,5 @@
 ﻿using System;
+using CoffeeRecipeClass;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -74,46 +75,70 @@ namespace CoffeeMachine
             Console.WriteLine("Кофемашинка чистая");
         }
     }
+        public void Clean()
+        {
+            if (isDirty)
+            {
+                isDirty=false;
+                Console.WriteLine("Кофемашинка очищена");
+            }
+            else
+            {
+                Console.WriteLine("Кофемашинка уже чистая");
+            }
+        }
 
     public void MakeCoffe(string recipeName)
     {
-        if (!isOn)
-        {
-            Console.WriteLine("Кофемашинка выключена, включите ее для испоьзования");
-            return;
-        }
-        if (isDirty)
-        {
-            Console.WriteLine("Кофемашинка загрязнена. Очистите её для приготовления кофе");
-            return;
-        }
-        CoffeeRecipeClass.CoffeeRecipeClass recipe = recipes.Find(r => r.Name.Equals(recipeName, StringComparison.OrdinalIgnoreCase)); // Equals(Object, Object) Определяет, считаются ли равными указанные экземпляры объектов.
+            if (!isOn)
+            {
+                Console.WriteLine("Кофемашина выключена. Включите её перед приготовлением кофе.");
+                return;
+            }
 
-            // r.Name.Equals(recipeName, StringComparison.OrdinalIgnoreCase)
-            // — это условие, проверяющее, равняется ли имя рецепта Name у текущего элемента r значению recipeName,
-            // при этом игнорируется регистр символов благодаря использованию StringComparison.OrdinalIgnoreCase
+            if (isDirty)
+            {
+                Console.WriteLine("Кофемашина загрязнена. Очистите её перед приготовлением кофе.");
+                return;
+            }
+
+            CoffeeRecipe recipe = recipes.Find(r => r.Name.Equals(recipeName, StringComparison.OrdinalIgnoreCase));
 
             if (recipe != null)
-        {
-            Console.WriteLine($"Приготовление {recipe.Name}");
-            MakeDirty();
-            log.Add(recipeName);
-            Console.WriteLine($"{recipe.Name} готов.");
-        }
-       else
-        {
-            Console.WriteLine($"Рецепт {recipe.Name} не найден.");
-        }
-    }
+            {
+                Console.WriteLine($"Приготовление {recipe.Name}...");
+                if (waterAmount < recipe.WaterAmount || coffeAmound < recipe.CoffeeAmount || milkAmount < recipe.MilkAmount)
+                {
+                    Console.WriteLine("Недостаточно ингредиентов для приготовления.");
+                    return;
+                }
 
-    public void ShowLog()
-    {
+                waterAmount -= recipe.WaterAmount;
+                coffeeAmount -= recipe.CoffeeAmount;
+                milkAmount -= recipe.MilkAmount;
+                MakeDirty();
+                log.Add(recipeName);
+                Console.WriteLine($"{recipe.Name} готов.");
+            }
+            else
+            {
+                Console.WriteLine($"Рецепт {recipeName} не найден.");
+            }
+
+        }
+
+        public void ShowLog()
+        {
         Console.WriteLine("Приготовленые чашки кофе:");
         foreach (var items in log) 
         {
             Console.WriteLine(items);
         }
-    }
+         }
+        public void ShowIngredients()
+        {
+            Console.WriteLine($"Вода: {waterAmound} мл, Кофе: {coffeeAmount} г, Молоко: {milkAmount} мл");  //!!!!!!!
+        }
 
- }
+    }
 }
