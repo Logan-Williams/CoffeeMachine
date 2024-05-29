@@ -32,12 +32,15 @@ namespace CoffeeMake
             switch (button)
             {
                 case 0:
+                    Console.Clear();
                     MainMenu.ShowMainMenu();
                     break;
                 case 1:
+                    Console.Clear();
                     CreateCoffee(1);
                     break;
                 case 2:
+                    Console.Clear();
                     CreateCoffee(2);
                     break;
                 case 3:
@@ -80,16 +83,18 @@ namespace CoffeeMake
                 if (reqiredCoffee == 20) 
                 {
                     Console.WriteLine($"Еспрессо приготовленно к количестве {cup} шт") ;
+                    
                 }
                 else 
                 {
                     Console.WriteLine($"Латте приготовленно к количестве {cup} шт");
                 }
+                Console.ReadKey();
             }
         }
         public static bool CheckIngredient(int water, int milk, int coffee) 
         {
-            if (water >= Ingredients.WaterAmound && milk >= Ingredients.MilkAmound && coffee >= Ingredients.CoffeAmound ) 
+            if (water <= Ingredients.WaterAmound && milk <= Ingredients.MilkAmound && coffee <= Ingredients.CoffeAmound ) 
             { 
                 return true;
             }

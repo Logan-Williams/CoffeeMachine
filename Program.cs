@@ -12,6 +12,7 @@ class Program
             switch (result)
             {
                 case 1:
+                    Console.Clear();
                     MainMenu.ShowMainMenu();
                     break;
                 case 2:

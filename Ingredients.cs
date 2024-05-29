@@ -13,6 +13,8 @@ namespace CoffeeIngredients
         public static int CoffeAmound { get; set; } = 300;
         public static int MilkAmound { get; set; } = 900;
 
+
+
         public static void ViewIngridients()
         {
             Console.WriteLine($"{Name}:Вода - {WaterAmound} мл, Кофе - {CoffeAmound}г, Молоко - {MilkAmound} мл");
