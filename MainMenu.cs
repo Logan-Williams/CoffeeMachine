@@ -6,12 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace CoffeeMachine
 {
     static class MainMenu
     {
-        
+
         public static void ShowMainMenu()
         {
             while (true)
@@ -25,7 +26,7 @@ namespace CoffeeMachine
                 Console.WriteLine("8. Выход");
                 Console.Write("Выберите действие: ");
 
-                int button = int.Parse(Console.ReadLine());// создать отдельно метод 
+                int button = GetUserPrint();// создать отдельно метод 
 
                 switch (button)
                 {
@@ -44,13 +45,29 @@ namespace CoffeeMachine
                         break;
                     case 4:
                         Console.Clear();
-                        Dirty.showDirtyMachine();
+                        CheckAndDirty.ShowDirtyMenu();
                         Console.Clear();
                         break;
                 }
-            
+
             }
 
+        }
+        public static int GetUserPrint()
+        {
+            while (true)
+            {
+                try
+                {
+                    int result = Convert.ToInt32(Console.ReadLine());
+                    return result;
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Ошибка, неверный формат ввода");
+                    Console.WriteLine("Повторите попытку:");
+                }
+            }   
         }
     }
 

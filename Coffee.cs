@@ -18,6 +18,7 @@ namespace CoffeeMake
         private const int waterEspresso = 100;
         private const int coffeeEspresso = 20;
         private const int milkEspresso = 50;
+        public static int Cup = 0;
 
         public static void MakeCoofee()
         {
@@ -27,7 +28,7 @@ namespace CoffeeMake
             Console.WriteLine("0. Вернуться назад");
             Console.Write("Выберите действие: ");
 
-            int button = int.Parse(Console.ReadLine());
+            int button = MainMenu.GetUserPrint();
 
             switch (button)
             {
@@ -37,10 +38,12 @@ namespace CoffeeMake
                     break;
                 case 1:
                     Console.Clear();
+                    
                     CreateCoffee(1);
                     break;
                 case 2:
                     Console.Clear();
+                    
                     CreateCoffee(2);
                     break;
                 case 3:
@@ -52,12 +55,12 @@ namespace CoffeeMake
         private static int CupAdd()
         {
             Console.WriteLine("Скролько кружек вы хотите?");
-            int cup = Convert.ToInt32(Console.ReadLine());
-            return cup;
+            Cup = Convert.ToInt32(Console.ReadLine());
+            return Cup;
         }
         public static void CreateCoffee(int coffee)
         {
-            int cup = CupAdd();
+            Cup = CupAdd();
             int reqiredWater = 0, reqiredCoffee = 0, reqiredMilk = 0;
             switch (coffee)
             {
@@ -75,27 +78,28 @@ namespace CoffeeMake
                     Console.WriteLine("Неверный выбор кофе");
                     break;
             }
-            if (CheckIngredient(reqiredWater * cup, reqiredCoffee * cup, reqiredMilk * cup )) 
+            if (CheckIngredient(reqiredWater * Cup, reqiredCoffee * Cup, reqiredMilk * Cup))
             {
-                Ingredients.WaterAmound -= reqiredWater * cup;
-                Ingredients.CoffeAmound -= reqiredCoffee * cup;
-                Ingredients.MilkAmound -= reqiredMilk * cup;
-                if (reqiredCoffee == 20) 
+                CheckAndDirty.CheckDirty();
+                Ingredients.WaterAmound -= reqiredWater * Cup;
+                Ingredients.CoffeAmound -= reqiredCoffee * Cup;
+                Ingredients.MilkAmound -= reqiredMilk * Cup;
+                if (reqiredCoffee == 20)
                 {
-                    Console.WriteLine($"Еспрессо приготовленно к количестве {cup} шт") ;
-                    
+                    Console.WriteLine($"Еспрессо приготовленно к количестве {Cup} шт");
+
                 }
-                else 
+                else
                 {
-                    Console.WriteLine($"Латте приготовленно к количестве {cup} шт");
+                    Console.WriteLine($"Латте приготовленно к количестве {Cup} шт");
                 }
                 Console.ReadKey();
             }
         }
-        public static bool CheckIngredient(int water, int milk, int coffee) 
+        public static bool CheckIngredient(int water, int milk, int coffee)
         {
-            if (water <= Ingredients.WaterAmound && milk <= Ingredients.MilkAmound && coffee <= Ingredients.CoffeAmound ) 
-            { 
+            if (water <= Ingredients.WaterAmound && milk <= Ingredients.MilkAmound && coffee <= Ingredients.CoffeAmound)
+            {
                 return true;
             }
             return false;
