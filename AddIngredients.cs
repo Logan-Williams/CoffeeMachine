@@ -1,7 +1,7 @@
 ﻿using System;
 using CoffeeMake;
 using CoffeeIngredients;
-using CoffeeMachine;
+using CoffeeMachineLogi;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

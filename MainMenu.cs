@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
+using CoffeeMachine;
 
-namespace CoffeeMachine
+namespace CoffeeMachineLogi
 {
     static class MainMenu
     {
@@ -23,6 +24,8 @@ namespace CoffeeMachine
                 Console.WriteLine("2. Добавить ингредиенты");
                 Console.WriteLine("3. Проверить ингредиенты");
                 Console.WriteLine("4. Проверить или прочистить кофемашинку");
+                Console.WriteLine("5. Посмотреть историю готовки");
+                Console.WriteLine("6. Добавить новый профиль приготовления");
                 Console.WriteLine("8. Выход");
                 Console.Write("Выберите действие: ");
 
@@ -47,6 +50,14 @@ namespace CoffeeMachine
                         Console.Clear();
                         CheckAndDirty.ShowDirtyMenu();
                         Console.Clear();
+                        break;
+                    case 5:
+                        Console.Clear();
+                        LogiCoffee.ShowCokingHistory();
+                        break;
+                    case 6:
+                        Console.Clear();
+                        ProfileManager.CreateProfile();
                         break;
                 }
 

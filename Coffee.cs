@@ -1,5 +1,5 @@
 ﻿using AddIngredient;
-using CoffeeMachine;
+using CoffeeMachineLogi;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -87,11 +87,12 @@ namespace CoffeeMake
                 if (reqiredCoffee == 20)
                 {
                     Console.WriteLine($"Еспрессо приготовленно к количестве {Cup} шт");
-
+                    LogiCoffee.AddHistoryCoking("Еспрессо",Cup);
                 }
                 else
                 {
                     Console.WriteLine($"Латте приготовленно к количестве {Cup} шт");
+                    LogiCoffee.AddHistoryCoking("Латте", Cup);
                 }
                 Console.ReadKey();
             }

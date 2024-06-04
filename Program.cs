@@ -1,5 +1,5 @@
 ﻿using CoffeeMake;
-using CoffeeMachine;
+using CoffeeMachineLogi;
 class Program
 {
 
@@ -24,5 +24,5 @@ class Program
 
             }
         }
-    }
+    } 
 }
