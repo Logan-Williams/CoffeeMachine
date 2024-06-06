@@ -57,7 +57,7 @@ namespace CoffeeMachineLogi
                         break;
                     case 6:
                         Console.Clear();
-                        ProfileManager.CreateProfile();
+                        MenuManager.ShowMenu();
                         break;
                 }
 

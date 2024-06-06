@@ -97,6 +97,10 @@ namespace CoffeeMake
                 Console.ReadKey();
             }
         }
+        public static void MakeCoffeProfile()
+        {
+
+        }
         public static bool CheckIngredient(int water, int milk, int coffee)
         {
             if (water <= Ingredients.WaterAmound && milk <= Ingredients.MilkAmound && coffee <= Ingredients.CoffeAmound)
